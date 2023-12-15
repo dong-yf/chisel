@@ -22,7 +22,7 @@
             mill
             circt
             jextract
-            llvm-lit
+            lit
             scala-cli
           ];
         in

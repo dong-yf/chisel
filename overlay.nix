@@ -50,6 +50,4 @@ circtSrc: final: prev:
       runHook postInstall
     '';
   });
-
-  llvm-lit = final.callPackage ./nix/llvm-lit.nix { };
 }
