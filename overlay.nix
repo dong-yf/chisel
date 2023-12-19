@@ -40,4 +40,15 @@ final: prev:
 #      substituteInPlace cmake/modules/GenVersionFile.cmake --replace "unknown git version" "nightly"
 #    '';
 #  });
+  circt-all = final.symlinkJoin {
+    name = "circt-all";
+    paths = with final; [
+      circt
+      circt.dev
+      circt.lib
+      circt.llvm
+      circt.llvm.dev
+      circt.llvm.lib
+    ];
+  };
 }
