@@ -5,7 +5,7 @@ import com.typesafe.tools.mima.core._
 enablePlugins(SiteScaladocPlugin)
 
 val defaultVersions = Map(
-  "firrtl" -> "edu.berkeley.cs" %% "firrtl" % "1.5.6",
+  "firrtl" -> "edu.berkeley.cs" %% "firrtl" % "1.5-SNAPSHOT",
   "treadle" -> "edu.berkeley.cs" %% "treadle" % "1.5.6",
   "chiseltest" -> "edu.berkeley.cs" %% "chiseltest" % "0.5.6",
 )
@@ -16,7 +16,7 @@ lazy val commonSettings = Seq (
     Resolver.sonatypeRepo("releases")
   ),
   organization := "edu.berkeley.cs",
-  version := "3.5.6",
+  version := "3.9-SNAPSHOT",
   autoAPIMappings := true,
   scalaVersion := "2.12.17",
   crossScalaVersions := Seq("2.13.10", "2.12.17"),
@@ -177,11 +177,9 @@ lazy val macros = (project in file("macros")).
   settings(mimaPreviousArtifacts := Set("edu.berkeley.cs" %% "chisel3-macros" % "3.5.4"))
 
 lazy val firrtlRef = ProjectRef(workspaceDirectory / "firrtl", "firrtl")
-lazy val chiseltestRef = ProjectRef(workspaceDirectory / "chiseltest", "chiseltest")
 
 lazy val core = (project in file("core")).
   sourceDependency(firrtlRef, defaultVersions("firrtl")).
-  sourceDependency(chiseltestRef, defaultVersions("chiseltest")).
   settings(commonSettings: _*).
   enablePlugins(BuildInfoPlugin).
   settings(

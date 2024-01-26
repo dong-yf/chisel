@@ -1,7 +1,1 @@
 
-[submodule "chiseltest"]
-	path = chiseltest
-	url = https://github.com/dong-yf/chiseltest.git
-[submodule "firrtl"]
-	path = firrtl
-	url = https://github.com/dong-yf/firrtl.git
