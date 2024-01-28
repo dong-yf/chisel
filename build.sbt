@@ -179,8 +179,9 @@ lazy val macros = (project in file("macros")).
 lazy val firrtlRef = ProjectRef(workspaceDirectory / "firrtl", "firrtl")
 
 lazy val core = (project in file("core")).
-  sourceDependency(firrtlRef, defaultVersions("firrtl")).
+  // sourceDependency(firrtlRef, defaultVersions("firrtl")).
   settings(commonSettings: _*).
+  settings(libraryDependencies ++= Seq(defaultVersions("firrtl"))).
   enablePlugins(BuildInfoPlugin).
   settings(
     buildInfoPackage := "chisel3",
@@ -248,6 +249,7 @@ lazy val chisel = (project in file(".")).
       // Modified package private methods (https://github.com/lightbend/mima/issues/53)
       ProblemFilters.exclude[DirectMissingMethodProblem]("chisel3.stage.ChiselOptions.this"),
     ),
+    dependencyOverrides += "edu.berkeley.cs" %% "firrtl" % "1.5-SNAPSHOT",
     libraryDependencies += defaultVersions("treadle") % "test",
     Test / scalacOptions += "-P:chiselplugin:genBundleElements",
     // Forward doc command to unidoc
